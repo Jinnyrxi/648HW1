@@ -1,0 +1,248 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={648hw1},
+  pdfauthor={Jinning Lin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{648hw1}
+\author{Jinning Lin}
+\date{2025-12-07}
+
+\begin{document}
+\maketitle
+
+\section{Discuss the advantages and challenges associated with
+Reading}\label{discuss-the-advantages-and-challenges-associated-with-reading}
+
+One major advantage of an open data science approach is increased
+transparency. When data and methods are shared openly, research becomes
+easier to verify, question, and build upon. This can encourage
+collaboration across disciplines and allow research findings to reach a
+wider audience. However, open data science also faces real challenges.
+Not all data can or should be made public, especially when it involves
+sensitive personal or location-based information. Ethical concerns and
+data misuse become serious risks.
+
+The reading provides a useful example through the discussion of
+large-scale voter data collected during U.S. election campaigns. If such
+data were openly available, it could greatly benefit social research. At
+the same time, it could raise serious privacy concerns and lead to
+oversimplified interpretations if taken out of its political and social
+context. This shows that open data science offers strong opportunities,
+but only when combined with careful judgment and critical reflection.
+
+\section{Import packages and read the
+data}\label{import-packages-and-read-the-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(ggspatial)}
+\FunctionTok{library}\NormalTok{(viridis)}
+\NormalTok{boulder }\OtherTok{\textless{}{-}} \FunctionTok{st\_read}\NormalTok{(}\StringTok{"E:/648{-}lab/BoulderSocialMedia/BoulderSocialMedia.shp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Reading layer `BoulderSocialMedia' from data source 
+##   `E:\648-lab\BoulderSocialMedia\BoulderSocialMedia.shp' using driver `ESRI Shapefile'
+## Simple feature collection with 55519 features and 12 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -788775 ymin: 1917813 xmax: -780555 ymax: 1930053
+## Projected CRS: NAD_1983_Albers
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{boulder}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Simple feature collection with 55519 features and 12 fields
+## Geometry type: POINT
+## Dimension:     XY
+## Bounding box:  xmin: -788775 ymin: 1917813 xmax: -780555 ymax: 1930053
+## Projected CRS: NAD_1983_Albers
+## First 10 features:
+##            id     DB   extent Climb_dist TrailH_Dis NatMrk_Dis Trails_dis
+## 1  6517284333 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 2  6517281191 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 3  6517278961 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 4  6517276295 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 5  6517274727 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 6  6517272539 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 7  6517270109 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 8  6516904527 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 9  6516902971 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+## 10 6516900761 Flickr 421678.2   1973.108   2368.567   2451.633   49.73422
+##    Bike_dis PrarDg_Dis PT_Elev Hydro_dis Street_dis                geometry
+## 1  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 2  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 3  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 4  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 5  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 6  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 7  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 8  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 9  1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+## 10 1437.134   1942.125    2064   1359.75   193.9165 POINT (-786099 1929916)
+\end{verbatim}
+
+\section{Add distance categories
+column}\label{add-distance-categories-column}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{boulder }\OtherTok{\textless{}{-}}\NormalTok{ boulder }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{mutate}\NormalTok{(}\AttributeTok{Distance\_Category =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{Street\_dis }\SpecialCharTok{\textless{}} \DecValTok{500} \SpecialCharTok{\textasciitilde{}} \StringTok{"near"}\NormalTok{,}
+\NormalTok{Street\_dis }\SpecialCharTok{\textgreater{}=} \DecValTok{500} \SpecialCharTok{\&}\NormalTok{ Street\_dis }\SpecialCharTok{\textless{}=} \DecValTok{1000} \SpecialCharTok{\textasciitilde{}} \StringTok{"middle"}\NormalTok{,}
+\NormalTok{Street\_dis }\SpecialCharTok{\textgreater{}} \DecValTok{1000} \SpecialCharTok{\textasciitilde{}} \StringTok{"far"}
+\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\section{Display the distributions of points of different distance
+categories on the
+map}\label{display-the-distributions-of-points-of-different-distance-categories-on-the-map}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{map\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_sf}\NormalTok{(}\AttributeTok{data =}\NormalTok{ boulder, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Distance\_Category), }\AttributeTok{alpha =} \FloatTok{0.6}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Shooting locations by road distance category in Boulder"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Distance category"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Showing the spatial relationship between elevation and
+distance}\label{showing-the-spatial-relationship-between-elevation-and-distance}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Boxplot of elevation vs. distance categories}
+\NormalTok{box\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(boulder, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Distance\_Category, }\AttributeTok{y =}\NormalTok{ PT\_Elev)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme\_classic}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Elevation distribution of locations in different road distance categories"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Distance category"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Altitude (m)"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Map}\label{map}
+
+\pandocbounded{\includegraphics[keepaspectratio]{648hw1_files/figure-latex/unnamed-chunk-4-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{648hw1_files/figure-latex/unnamed-chunk-4-2.pdf}}
+
+\end{document}

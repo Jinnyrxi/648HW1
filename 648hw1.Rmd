@@ -1,30 +1,60 @@
 ---
 title: "648hw1"
 author: "Jinning Lin"
-date: "2025-12-07"
-output: html_document
+date: "2025"
+output:
+  html_document:
+    df_print: paged
+output_file: jinnylin_lab01.pdf
 ---
+# Discuss the advantages and challenges associated with Reading
+One major advantage of an open data science approach is increased transparency. When data and methods are shared openly, research becomes easier to verify, question, and build upon. This can encourage collaboration across disciplines and allow research findings to reach a wider audience. However, open data science also faces real challenges. Not all data can or should be made public, especially when it involves sensitive personal or location-based information. Ethical concerns and data misuse become serious risks.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+The reading provides a useful example through the discussion of large-scale voter data collected during U.S. election campaigns. If such data were openly available, it could greatly benefit social research. At the same time, it could raise serious privacy concerns and lead to oversimplified interpretations if taken out of its political and social context. This shows that open data science offers strong opportunities, but only when combined with careful judgment and critical reflection.
+
+# Import packages and read the data
+```{r import-data, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(sf)
+library(tidyverse)
+library(ggspatial)
+library(viridis)
+boulder <- st_read("E:/648-lab/BoulderSocialMedia/BoulderSocialMedia.shp")
+boulder
 ```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+# Add distance categories column   
+```{r message=FALSE, warning=FALSE}
+boulder <- boulder %>%
+mutate(Distance_Category = case_when(
+Street_dis < 500 ~ "near",
+Street_dis >= 500 & Street_dis <= 1000 ~ "middle",
+Street_dis > 1000 ~ "far"
+)) 
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+# Display the distributions of points of different distance categories on the map
+```{r message=FALSE, warning=FALSE}
+map_plot <- ggplot() +
+  geom_sf(data = boulder, aes(color = Distance_Category), alpha = 0.6) +
+  theme_minimal() +
+  labs(
+    title = "Shooting locations by road distance category in Boulder",
+    color = "Distance category"
+  )
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Showing the spatial relationship between elevation and distance
+```{r message=FALSE, warning=FALSE}
+#Boxplot of elevation vs. distance categories
+box_plot <- ggplot(boulder, aes(x = Distance_Category, y = PT_Elev)) +
+  geom_boxplot() +
+  theme_classic() +
+  labs(
+    title = "Elevation distribution of locations in different road distance categories",
+    x = "Distance category",
+    y = "Altitude (m)"
+  )
+```
+# Map and Boxplot
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+map_plot
+box_plot
+```
